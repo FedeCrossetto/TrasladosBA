@@ -50,7 +50,7 @@ export default function RatesPage() {
               </div>
             ) : (
               <Table>
-                <TableCaption>{t("rates.note")}</TableCaption>
+                {/* <TableCaption>{t("rates.note")}</TableCaption> */}
                 <TableHeader>
                   <TableRow>
                     <TableHead>{t("rates.origin")}</TableHead>

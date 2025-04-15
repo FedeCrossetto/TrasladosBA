@@ -79,6 +79,39 @@ const translations: Translations = {
     es: "Con más de 20 años de experiencia en el transporte de pasajeros, ofrecemos un servicio confiable, seguro y puntual para todos sus traslados en Buenos Aires.",
     en: "With over 20 years of experience in passenger transportation, we offer a reliable, safe, and punctual service for all your transfers in Buenos Aires.",
   },
+  "home.punctuality": {
+    es: "Puntualidad",
+    en: "Punctuality",
+  },
+  "home.punctuality.text": {
+    es: "Siempre a tiempo, respetando su agenda.",
+    en: "Always on time, respecting your schedule.",
+  },
+  "home.security": {
+    es: "Seguridad",
+    en: "Security",
+  },
+  "home.security.text": {
+    es: "Conductores profesionales y vehículos en perfectas condiciones.",
+    en: "Professional drivers and vehicles in perfect condition.",
+  },
+  "home.payment": {
+    es: "Facilidad de pago",
+    en: "Ease of payment",
+  },
+  "home.payment.text": {
+    es: "Múltiples opciones de pago para su comodidad.",
+    en: "Multiple payment options for your convenience.",
+  },
+  "home.transfer": {
+    es: "¿Necesita un traslado?",
+    en: "Do you need a transfer?",
+  },
+  "home.transfer.text": {
+    es: "Contáctenos ahora y coordinaremos su viaje de la manera más conveniente para usted.",
+    en: "Contact us now and we'll coordinate your trip in the most convenient way for you.",
+  },
+  
   // Reservations
   "reservations.title": {
     es: "Reserva tu Traslado",

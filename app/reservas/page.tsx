@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,6 +15,7 @@ import { createReservation } from "@/services/reservation-service"
 
 export default function ReservationsPage() {
   const { t } = useLanguage()
+  const formRef = useRef<HTMLFormElement>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -29,20 +30,46 @@ export default function ReservationsPage() {
     try {
       await createReservation({
         name: formData.get("name") as string,
-        email: formData.get("email") as string,
         phone: formData.get("phone") as string,
         pickup: formData.get("pickup") as string,
         destination: formData.get("destination") as string,
-        date: formData.get("date") as string,
-        time: formData.get("time") as string,
+        // Cambia esto según lo que espera tu backend:
+        // datetime: formData.get("datetime") as string,
+        datetime: formData.get("datetime") ? (formData.get("datetime") as string).split("T")[0] : "",
         passengers: Number.parseInt(formData.get("passengers") as string, 10),
         message: (formData.get("message") as string) || undefined,
       })
 
-      setIsSubmitted(true)
-      e.currentTarget.reset()
+      // WhatsApp integration
+      const name = formData.get("name")
+      const phone = formData.get("phone")
+      const pickup = formData.get("pickup")
+      const destination = formData.get("destination")
+      const datetime = formData.get("datetime")
+      const passengers = formData.get("passengers")
+      const message = formData.get("message")
 
-      // Reset form after 5 seconds
+      // Format WhatsApp message
+      const whatsappMessage =
+        `Nueva solicitud de traslado:\n\n` +
+        `Nombre: ${name}\n` +
+        `Teléfono: ${phone}\n` +
+        `Origen: ${pickup}\n` +
+        `Destino: ${destination}\n` +
+        `Fecha y hora: ${datetime}\n` +
+        `Pasajeros: ${passengers}\n` +
+        (message ? `Mensaje: ${message}` : "");
+
+      // Replace with your WhatsApp number (with country code, no + or spaces)
+      const whatsappNumber = "5491168877949";
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappUrl, "_blank");
+
+      setIsSubmitted(true)
+      if (formRef.current) {
+        formRef.current.reset()
+      }
+
       setTimeout(() => {
         setIsSubmitted(false)
       }, 5000)
@@ -80,17 +107,17 @@ export default function ReservationsPage() {
             <CardDescription>{t("reservations.subtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">{t("form.name")}</Label>
                   <Input id="name" name="name" required />
                 </div>
 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="email">{t("form.email")}</Label>
                   <Input id="email" name="email" type="email" required />
-                </div>
+                </div> */}
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">{t("form.phone")}</Label>
@@ -108,13 +135,8 @@ export default function ReservationsPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="date">{t("form.date")}</Label>
-                  <Input id="date" name="date" type="date" required />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="time">{t("form.time")}</Label>
-                  <Input id="time" name="time" type="time" required />
+                  <Label htmlFor="datetime">{t("form.date")}</Label>
+                  <Input id="datetime" name="datetime" type="datetime-local" required />
                 </div>
 
                 <div className="space-y-2">

@@ -4,36 +4,27 @@ import { useState } from "react"
 import Link from "next/link"
 
 export function WhatsAppButton() {
-  const [showTooltip, setShowTooltip] = useState(false)
+  const whatsappNumber = "5491168877949"
+  const message = "Hola! , me gustaría reservar un viaje!"
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
-      <Link href="/reservas">
-        <button
-          className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg transition-all duration-300 hover:scale-110"
-          aria-label="Reservar por WhatsApp"
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-          onFocus={() => setShowTooltip(true)}
-          onBlur={() => setShowTooltip(false)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-7 h-7">
-            <path
-              fillRule="evenodd"
-              d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </Link>
-
-      {/* Tooltip */}
-      {showTooltip && (
-        <div className="absolute bottom-16 left-0 bg-black text-white text-sm py-2 px-3 rounded-lg shadow-lg whitespace-nowrap">
-          Reservar ahora
-          <div className="absolute -bottom-2 left-4 w-4 h-4 bg-black transform rotate-45"></div>
-        </div>
-      )}
-    </div>
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full p-3 shadow-lg flex items-center justify-center"
+      aria-label="WhatsApp"
+    >
+      {/* Official WhatsApp SVG logo */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-10 w-10"
+        viewBox="0 0 32 32"
+        fill="currentColor"
+      >
+        <path d="M16.002 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.47 1.74 6.41L3.2 28.8l6.6-1.72c1.88 1.03 4.01 1.58 6.2 1.58h.01c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.2c-2.01 0-3.98-.53-5.7-1.54l-.41-.24-3.92 1.02 1.05-3.82-.26-.39c-1.09-1.65-1.67-3.57-1.67-5.53 0-5.63 4.58-10.2 10.2-10.2s10.2 4.57 10.2 10.2-4.58 10.2-10.2 10.2zm5.6-7.61c-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.81 1.01-.99 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.5-1.53-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.13-.63.13-.13.29-.34.44-.51.15-.17.2-.29.3-.48.1-.19.05-.36 0-.51-.05-.15-.71-1.71-.98-2.34-.26-.62-.53-.54-.73-.55-.19-.01-.41-.01-.63-.01-.22 0-.57.08-.87.39-.3.31-1.14 1.11-1.14 2.71 0 1.6 1.17 3.14 1.34 3.36.17.22 2.32 3.7 5.62 4.89.79.28 1.41.45 1.89.58.8.21 1.53.18 2.1.11.64-.09 1.97-.8 2.25-1.57.28-.77.28-1.43.19-1.57-.09-.14-.28-.22-.59-.38z"/>
+      </svg>
+    </a>
   )
 }

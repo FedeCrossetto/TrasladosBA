@@ -9,12 +9,10 @@ export type Rate = {
 export type Reservation = {
   id: number
   name: string
-  email: string
   phone: string
   pickup: string
   destination: string
-  date: string
-  time: string
+  datetime: string
   passengers: number
   message?: string
   created_at?: string
