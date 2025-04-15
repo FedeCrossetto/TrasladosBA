@@ -35,57 +35,30 @@ export default function ContactPage() {
     <div className="container py-12">
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold mb-3">{t("contact.title")}</h1>
-        <p className="text-gray-600 dark:text-gray-400">{t("contact.subtitle")}</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          {t("contact.subtitle")}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
         <div className="h-full">
-          <Card className="h-full">
+          <Card className="h-full overflow-hidden">
             <CardHeader>
-              <CardTitle>{t("contact.title")}</CardTitle>
-              <CardDescription>{t("contact.subtitle")}</CardDescription>
+              <CardTitle>{t("contact.zone.title")}</CardTitle>
+              <CardDescription>{t("contact.zone.subtitle")}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-full">
-                  <Phone className="h-5 w-5 text-yellow-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{t("contact.phone")}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">+54 11 1234-5678</p>
-                  <p className="text-gray-600 dark:text-gray-400">+54 11 8765-4321</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-full">
-                  <Mail className="h-5 w-5 text-yellow-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{t("contact.email")}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">info@trasladosba.com</p>
-                  <p className="text-gray-600 dark:text-gray-400">reservas@trasladosba.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-full">
-                  <MapPin className="h-5 w-5 text-yellow-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{t("contact.address")}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Buenos Aires, Argentina</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-full">
-                  <Clock className="h-5 w-5 text-yellow-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{t("contact.hours")}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{t("contact.hours.value")}</p>
-                </div>
+            <CardContent className="h-[400px] px-4 pb-4">
+              <div className="w-full h-full overflow-hidden rounded-md">
+                <iframe
+                  title="Ubicación TransporteBA"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13129.05730842594!2d-58.4173096!3d-34.6036844!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb28e4c2b3f7%3A0xb634f6dbd9b04e09!2sBuenos%20Aires!5e0!3m2!1ses-419!2sar!4v1713216791702!5m2!1ses-419!2sar"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </CardContent>
           </Card>
@@ -94,8 +67,8 @@ export default function ContactPage() {
         <div className="h-full">
           <Card className="h-full">
             <CardHeader>
-              <CardTitle>{t("contact.title")}</CardTitle>
-              <CardDescription>{t("contact.subtitle")}</CardDescription>
+              <CardTitle>{t("contact.help.title")}</CardTitle>
+              <CardDescription>{t("contact.help.subtitle")}</CardDescription>
             </CardHeader>
             <CardContent>
               <form className="space-y-4" onSubmit={handleSubmit}>
@@ -133,7 +106,10 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-yellow-500 hover:bg-yellow-600 text-black">
+                <Button
+                  type="submit"
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black"
+                >
                   {t("form.submit")}
                 </Button>
               </form>
@@ -142,5 +118,5 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

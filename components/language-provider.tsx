@@ -231,6 +231,22 @@ const translations: Translations = {
     es: "Lunes a Domingo: 24 horas",
     en: "Monday to Sunday: 24 hours",
   },
+  "contact.zone.title": {
+    es: "Zona de cobertura",
+    en: "Service Area",
+  },
+  "contact.zone.subtitle": {
+    es: "Realizamos traslados desde y hacia Buenos Aires y alrededores",
+    en: "We offer transfers to and from Buenos Aires and nearby regions",
+  },
+  "contact.help.title": {
+    es: "Asistencia personalizada",
+    en: "Personalized assistance",
+  },
+  "contact.help.subtitle": {
+    es: "Consúltenos lo que necesite",
+    en: "Let us know if you need anything",
+  },
   // Footer
   "footer.rights": {
     es: "Todos los derechos reservados",
