@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 
 export function WhatsAppButton() {
-  const whatsappNumber = "5491168877949"
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
   const message = "Hola! , me gustaría reservar un viaje!"
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 

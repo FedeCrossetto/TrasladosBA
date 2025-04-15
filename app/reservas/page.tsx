@@ -61,7 +61,7 @@ export default function ReservationsPage() {
         (message ? `Mensaje: ${message}` : "");
 
       // Replace with your WhatsApp number (with country code, no + or spaces)
-      const whatsappNumber = "5491168877949";
+      const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
       window.open(whatsappUrl, "_blank");
 

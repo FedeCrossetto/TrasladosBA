@@ -1,13 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card"
 
 export default function ContactPage() {
   const { t } = useLanguage()
@@ -15,11 +20,22 @@ export default function ContactPage() {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [message, setMessage] = useState("")
+  const [mapLoaded, setMapLoaded] = useState(false)
+
+  useEffect(() => {
+    const fallbackTimeout = setTimeout(() => {
+      setMapLoaded(true)
+    }, 5000) // si no carga en 5s, ocultamos el loader igual
+
+    return () => clearTimeout(fallbackTimeout)
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const whatsappNumber = "5491168877949"
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+    console.log('whatsap number',whatsappNumber);
+
     const text = `
 *Nuevo mensaje desde TransporteBA* 🚖
 
@@ -27,7 +43,9 @@ export default function ContactPage() {
 *Teléfono:* ${phone}
 *Mensaje:* ${message || "-"}`
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      text
+    )}`
     window.open(whatsappUrl, "_blank")
   }
 
@@ -41,6 +59,7 @@ export default function ContactPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+        {/* Mapa */}
         <div className="h-full">
           <Card className="h-full overflow-hidden">
             <CardHeader>
@@ -48,22 +67,31 @@ export default function ContactPage() {
               <CardDescription>{t("contact.zone.subtitle")}</CardDescription>
             </CardHeader>
             <CardContent className="h-[400px] px-4 pb-4">
-              <div className="w-full h-full overflow-hidden rounded-md">
+              <div className="w-full h-full overflow-hidden rounded-md relative">
+                {!mapLoaded && (
+                  <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center text-gray-500 text-sm z-10">
+                    {t("contact.map.loading")}
+                  </div>
+                )}
                 <iframe
                   title="Ubicación TransporteBA"
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13129.05730842594!2d-58.4173096!3d-34.6036844!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb28e4c2b3f7%3A0xb634f6dbd9b04e09!2sBuenos%20Aires!5e0!3m2!1ses-419!2sar!4v1713216791702!5m2!1ses-419!2sar"
                   width="100%"
                   height="100%"
+                  className={`${mapLoaded ? "block" : "hidden"}`}
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  onLoad={() => setMapLoaded(true)}
+                  onError={() => setMapLoaded(true)}
                 />
               </div>
             </CardContent>
           </Card>
         </div>
 
+        {/* Formulario */}
         <div className="h-full">
           <Card className="h-full">
             <CardHeader>

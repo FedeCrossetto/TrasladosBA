@@ -114,8 +114,8 @@ const translations: Translations = {
   
   // Reservations
   "reservations.title": {
-    es: "Reserva tu Traslado",
-    en: "Book your Transfer",
+    es: "Reserva tu traslado",
+    en: "Book your transfer",
   },
   "reservations.subtitle": {
     es: "Complete el formulario y nos pondremos en contacto a la brevedad",
@@ -246,6 +246,10 @@ const translations: Translations = {
   "contact.help.subtitle": {
     es: "Consúltenos lo que necesite",
     en: "Let us know if you need anything",
+  },
+  "contact.map.loading": {
+    es: "Cargando mapa...",
+    en: "Loading map...",
   },
   // Footer
   "footer.rights": {
