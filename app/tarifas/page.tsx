@@ -39,13 +39,13 @@ export default function RatesPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t("rates.title")}</CardTitle>
-            <CardDescription>{t("rates.subtitle")}</CardDescription>
+            <CardTitle>{t("rates.card.title")}</CardTitle>
+            <CardDescription>{t("rates.card.subtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
             {loading ? (
               <div className="text-center py-8">
-                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-yellow-500 border-r-transparent"></div>
+                <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-colorPrimary-500 border-r-transparent"></div>
                 <p className="mt-4">Cargando tarifas...</p>
               </div>
             ) : (
@@ -72,9 +72,9 @@ export default function RatesPage() {
           </CardContent>
         </Card>
 
-        <Alert className="mt-8 bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-900">
-          <Info className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-          <AlertDescription className="text-yellow-600 dark:text-yellow-400">{t("rates.note")}</AlertDescription>
+        <Alert className="mt-8 bg-colorPrimary-50 dark:bg-colorPrimary-900/20 border-colorPrimary-200 dark:border-colorPrimary-900">
+          <Info className="h-5 w-5 text-colorPrimary-600 dark:text-colorPrimary-400" />
+          <AlertDescription className="text-colorPrimary-600 dark:text-colorPrimary-400">{t("rates.note")}</AlertDescription>
         </Alert>
       </div>
     </div>

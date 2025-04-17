@@ -11,7 +11,7 @@ import { getFeaturedRates } from "@/services/rates-service"
 import type { Rate } from "@/types/supabase"
 
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage() // <-- get language
   const [featuredRates, setFeaturedRates] = useState<Rate[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -44,7 +44,13 @@ export default function Home() {
         </div>
         <div className="container relative z-20">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h1
+              className={`font-bold mb-6 text-white ${
+                language === "es"
+                  ? "text-3xl md:text-5xl" // smaller for Spanish
+                  : "text-3xl md:text-5xl" // default for English
+              }`}
+            >
               {t("home.title")}
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
@@ -53,7 +59,7 @@ export default function Home() {
             <Link href="/reservas">
               <Button
                 size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-black"
+                className="bg-colorPrimary-500 hover:bg-colorPrimary-600 text-black"
               >
                 {t("home.cta")}
               </Button>
@@ -72,8 +78,8 @@ export default function Home() {
             </p>
           </div>
 
-          <Card className="border-yellow-200 dark:border-yellow-900/50">
-            <CardHeader className="bg-yellow-50 dark:bg-yellow-900/20 border-b border-yellow-100 dark:border-yellow-900/30">
+          <Card className="border-colorPrimary-200 dark:border-colorPrimary-900/50">
+            <CardHeader className="bg-colorPrimary-50 dark:bg-colorPrimary-900/20 border-b border-colorPrimary-100 dark:border-colorPrimary-900/30">
               <CardTitle>{t("rates.featured.title")}</CardTitle>
               <CardDescription>
               {t("rates.featured.subtitle")}
@@ -82,7 +88,7 @@ export default function Home() {
             <CardContent className="p-0">
               {loading ? (
                 <div className="text-center py-8">
-                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-yellow-500 border-r-transparent"></div>
+                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-colorPrimary-500 border-r-transparent"></div>
                   <p className="mt-4">Cargando tarifas...</p>
                 </div>
               ) : (
@@ -114,15 +120,26 @@ export default function Home() {
 
           <div className="mt-6 text-center">
             <Link href="/tarifas">
-              <Button variant="outline" className="group">
-              {t("rates.view.all")}
+              <Button
+                variant="outline"
+                className="border-colorPrimary-500 text-colorPrimary-500 hover:bg-colorPrimary-500 hover:text-black"              >
+                {t("rates.view.all")}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
-
+      {/* If you have a theme toggle button somewhere, update its classes as follows: */}
+      {/* ... */}
+      <button
+        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 w-10
+        hover:bg-colorPrimary-500 hover:text-black" // <-- override hover color here
+        // ...other props
+      >
+        {/* ...SVG icons and content... */}
+      </button>
+      {/* ... */}
       {/* Services Section */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container">
@@ -130,13 +147,13 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-4">
               {t("home.services.title")}
             </h2>
-            <div className="w-20 h-1 bg-yellow-500 mx-auto"></div>
+            <div className="w-20 h-1 bg-colorPrimary-500 mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="w-14 h-14 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-6">
-                <Plane className="h-7 w-7 text-yellow-500" />
+              <div className="w-14 h-14 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 rounded-full flex items-center justify-center mb-6">
+                <Plane className="h-7 w-7 text-colorPrimary-500" />
               </div>
               <h3 className="text-xl font-semibold mb-3">
                 {t("home.services.airport.title")}
@@ -147,8 +164,8 @@ export default function Home() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="w-14 h-14 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-6">
-                <Car className="h-7 w-7 text-yellow-500" />
+              <div className="w-14 h-14 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 rounded-full flex items-center justify-center mb-6">
+                <Car className="h-7 w-7 text-colorPrimary-500" />
               </div>
               <h3 className="text-xl font-semibold mb-3">
                 {t("home.services.city.title")}
@@ -159,8 +176,8 @@ export default function Home() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="w-14 h-14 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-6">
-                <Map className="h-7 w-7 text-yellow-500" />
+              <div className="w-14 h-14 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 rounded-full flex items-center justify-center mb-6">
+                <Map className="h-7 w-7 text-colorPrimary-500" />
               </div>
               <h3 className="text-xl font-semibold mb-3">
                 {t("home.services.tourism.title")}
@@ -187,8 +204,8 @@ export default function Home() {
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-full">
-                    <Clock className="h-5 w-5 text-yellow-500" />
+                  <div className="mt-1 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 p-2 rounded-full">
+                    <Clock className="h-5 w-5 text-colorPrimary-500" />
                   </div>
                   <div>
                     <h3 className="font-semibold">{t("home.punctuality")}</h3>
@@ -199,8 +216,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-full">
-                    <Shield className="h-5 w-5 text-yellow-500" />
+                  <div className="mt-1 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 p-2 rounded-full">
+                    <Shield className="h-5 w-5 text-colorPrimary-500" />
                   </div>
                   <div>
                     <h3 className="font-semibold">{t("home.security")}</h3>
@@ -211,8 +228,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-full">
-                    <CreditCard className="h-5 w-5 text-yellow-500" />
+                  <div className="mt-1 bg-colorPrimary-100 dark:bg-colorPrimary-900/30 p-2 rounded-full">
+                    <CreditCard className="h-5 w-5 text-colorPrimary-500" />
                   </div>
                   <div>
                     <h3 className="font-semibold">{t("home.payment")}</h3>
@@ -236,7 +253,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-yellow-500 dark:bg-yellow-600">
+      <section className="py-16 bg-colorPrimary-500 dark:bg-colorPrimary-600">
         <div className="container text-center">
           <h2 className="text-3xl font-bold mb-6 text-black">
           {t("home.transfer")}

@@ -22,7 +22,7 @@
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
 
-    --accent: 48 96% 53%;
+    --accent: 38 92% 50%; /* Actualizado para usar el tono amarillo */
     --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,6 +33,11 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
+
+    /* Variables personalizadas para el color de la marca */
+    --brand: 38 92% 50%;
+    --brand-light: 38 92% 90%;
+    --brand-dark: 38 92% 30%;
   }
 
   .dark {
@@ -54,7 +59,7 @@
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
 
-    --accent: 48 96% 53%;
+    --accent: 38 92% 50%; /* Actualizado para usar el tono amarillo */
     --accent-foreground: 0 0% 9%;
 
     --destructive: 0 62.8% 30.6%;
@@ -63,6 +68,11 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+
+    /* Variables personalizadas para el color de la marca en modo oscuro */
+    --brand: 38 92% 50%;
+    --brand-light: 38 92% 70%;
+    --brand-dark: 38 92% 40%;
   }
 }
 
@@ -72,5 +82,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Clases de utilidad personalizadas */
+@layer utilities {
+  .text-brand-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-brand-600 dark:from-brand-400 dark:to-brand-500;
   }
 }

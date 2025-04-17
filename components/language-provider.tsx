@@ -174,6 +174,14 @@ const translations: Translations = {
     es: "Precios referenciales para los traslados más comunes",
     en: "Reference prices for the most common transfers",
   },
+  "rates.card.title": {
+    es: "Calculá tu traslado",
+    en: "Calculate your transfer",
+  },
+  "rates.card.subtitle": {
+    es: "Consultá los valores estimados según origen y destino",
+    en: "Check the estimated values ​​according to origin and destination",
+  },
   "rates.featured.title": {
     es: "Tarifas Destacadas",
     en: "Featured Rates",

@@ -152,7 +152,7 @@ export default function ReservationsPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-black"
+                className="w-full bg-colorPrimary-500 hover:bg-colorPrimary-600 text-black"
                 disabled={isLoading}
               >
                 {isLoading ? (

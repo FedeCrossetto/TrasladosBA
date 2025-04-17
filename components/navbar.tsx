@@ -28,7 +28,7 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-yellow-600 dark:from-yellow-400 dark:to-yellow-500">
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-colorPrimary-500 to-colorPrimary-600 dark:from-colorPrimary-400 dark:to-colorPrimary-500">
               TrasladosBA
             </span>
           </Link>
@@ -40,7 +40,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:text-yellow-500"
+              className="text-sm font-medium transition-colors hover:text-colorPrimary-500"
             >
               {link.label}
             </Link>
@@ -60,13 +60,13 @@ export default function Navbar() {
             className="px-2 min-w-[60px]"
           >
             <span
-              className={`text-sm font-medium ${language === "en" ? "text-yellow-500 font-bold" : "text-gray-500"}`}
+              className={`text-sm font-medium ${language === "en" ? "text-colorPrimary-500 font-bold" : "text-gray-500"}`}
             >
               EN
             </span>
             <span className="mx-1 text-gray-400">/</span>
             <span
-              className={`text-sm font-medium ${language === "es" ? "text-yellow-500 font-bold" : "text-gray-500"}`}
+              className={`text-sm font-medium ${language === "es" ? "text-colorPrimary-500 font-bold" : "text-gray-500"}`}
             >
               ES
             </span>
@@ -75,7 +75,8 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon"   className="hover:bg-primary hover:text-primary-foreground"
+              >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
@@ -86,7 +87,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-medium transition-colors hover:text-yellow-500"
+                    className="text-lg font-medium transition-colors hover:text-colorPrimary-500"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
