@@ -14,6 +14,8 @@ export type Reservation = {
   destination: string
   datetime: string
   passengers: number
+  bags: number,
+  flightNumber: string
   message?: string
   created_at?: string
   status?: "pending" | "confirmed" | "cancelled"

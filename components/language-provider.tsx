@@ -150,8 +150,17 @@ const translations: Translations = {
     en: "Time",
   },
   "form.passengers": {
-    es: "Número de pasajeros",
+    es: "Cantidad de pasajeros",
     en: "Number of passengers",
+  },
+  // Add these two new fields:
+  "form.luggage": {
+    es: "Nro. de Valijas o Maletas (opcional)",
+    en: "Number of Luggage or Suitcases (optional)",
+  },
+  "form.flight": {
+    es: "Nro. de Vuelo (opcional)",
+    en: "Flight Number (optional)",
   },
   "form.message": {
     es: "Mensaje adicional",
@@ -209,6 +218,10 @@ const translations: Translations = {
   "rates.note": {
     es: "Los precios pueden variar según la hora, el día y la disponibilidad.",
     en: "Prices may vary depending on time, day, and availability.",
+  },
+  "rates.zero": {
+    es: "Consultar",
+    en: "Inquire",
   },
   // Contact
   "contact.title": {

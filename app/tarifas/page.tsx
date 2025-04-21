@@ -63,7 +63,9 @@ export default function RatesPage() {
                     <TableRow key={rate.id}>
                       <TableCell className="font-medium">{rate.origin}</TableCell>
                       <TableCell>{rate.destination}</TableCell>
-                      <TableCell className="text-right">${rate.price}</TableCell>
+                      <TableCell className="text-right uppercase">
+                        {(!rate.price || Number(rate.price) === 0) ? `${t("rates.zero")}` : `$${rate.price}`}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

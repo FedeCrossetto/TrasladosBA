@@ -37,6 +37,8 @@ export default function ReservationsPage() {
         // datetime: formData.get("datetime") as string,
         datetime: formData.get("datetime") ? (formData.get("datetime") as string).split("T")[0] : "",
         passengers: Number.parseInt(formData.get("passengers") as string, 10),
+        bags : Number.parseInt(formData.get("bags") as string, 10),
+        flight_number: formData.get("flight_number") as string,
         message: (formData.get("message") as string) || undefined,
       })
 
@@ -47,6 +49,8 @@ export default function ReservationsPage() {
       const destination = formData.get("destination")
       const datetime = formData.get("datetime")
       const passengers = formData.get("passengers")
+      const bags = formData.get("bags")
+      const flight_number = formData.get("flight_number")
       const message = formData.get("message")
 
       // Format WhatsApp message
@@ -58,6 +62,8 @@ export default function ReservationsPage() {
         `Destino: ${destination}\n` +
         `Fecha y hora: ${datetime}\n` +
         `Pasajeros: ${passengers}\n` +
+        `Cantidad de Valijas (Opcional): ${bags}\n` +
+        `Número de vuelo (Opcional):: ${flight_number}\n` +
         (message ? `Mensaje: ${message}` : "");
 
       // Replace with your WhatsApp number (with country code, no + or spaces)
@@ -143,6 +149,17 @@ export default function ReservationsPage() {
                   <Label htmlFor="passengers">{t("form.passengers")}</Label>
                   <Input id="passengers" name="passengers" type="number" min="1" required />
                 </div>
+                {/* Add luggage field */}
+                <div className="space-y-2">
+                  <Label htmlFor="luggage">{t("form.luggage")}</Label>
+                  <Input id="luggage" name="luggage" type="number" min="0" />
+                </div>
+                {/* Add flight number field */}
+                <div className="space-y-2">
+                  <Label htmlFor="flight_number">{t("form.flight")}</Label>
+                  <Input id="flight_number" name="flight_number" type="text" />
+                </div>
+
               </div>
 
               <div className="space-y-2">

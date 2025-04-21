@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" sizes="360x360" />
+        <link rel="icon" type="image/png" href="/favicon3.png" sizes="360x360" />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
