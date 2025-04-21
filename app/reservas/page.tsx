@@ -53,6 +53,10 @@ export default function ReservationsPage() {
       const flight_number = formData.get("flight_number")
       const message = formData.get("message")
 
+      // Set default text if not completed
+      const bagsText = bags && bags.toString().trim() !== "" ? bags : "Sin Completar"
+      const flightNumberText = flight_number && flight_number.toString().trim() !== "" ? flight_number : "Sin Completar"
+
       // Format WhatsApp message
       const whatsappMessage =
         `Nueva solicitud de traslado:\n\n` +
@@ -62,8 +66,8 @@ export default function ReservationsPage() {
         `Destino: ${destination}\n` +
         `Fecha y hora: ${datetime}\n` +
         `Pasajeros: ${passengers}\n` +
-        `Cantidad de Valijas (Opcional): ${bags}\n` +
-        `Número de vuelo (Opcional):: ${flight_number}\n` +
+        `Cantidad de Valijas (Opcional): ${bagsText}\n` +
+        `Número de vuelo (Opcional): ${flightNumberText}\n` +
         (message ? `Mensaje: ${message}` : "");
 
       // Replace with your WhatsApp number (with country code, no + or spaces)
